@@ -7,45 +7,37 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2
 {
-    class ListOfString : List<string>
+    public class SwapList<T> : List<T>
     {
-
-    }
-    class Program
-    {
-        static void Main(string[] args)
+        public void Swap(int ind1, int ind2)
         {
-            int x = 2, y = 5;
-            Console.WriteLine("X =  " + x + " Y = " + y);
-            Swap<int>(ref x, ref y);
-            Console.WriteLine("X =  " + x + " Y = " + y);
-
+            T temp =this[ind1];
+            this[ind1] = this[ind2];
+            this[ind2] = temp;
+        }
+    }
+   public class Program
+    {
+       public static void Main(string[] args)
+        {   
+            int x = 8;
+            PrintTheObj<int>(x);
             Console.WriteLine();
-
-            double z = 1.1, w = 8.1;
-            Console.WriteLine("Z =  " + z + " W = " + w);
-            Swap<double>(ref z, ref w);
-            Console.WriteLine("Z =  " + z + " W = " + w);
+            double y = 152.123;
+            PrintTheObj<double>(y);
+            Console.WriteLine();
+            SwapList<string> listofname = new SwapList<string>() { "racheli", "tamar", "rivka" };
+            listofname.Swap(1,2);
+            foreach (string i in listofname)
+            {
+                Console.Write(i+",");
+            }
             Console.Read();
         }
-
-        static void Swap<T>(ref T x, ref T y)
+        static void PrintTheObj<T>(T obj)
         {
-            T z = x;
-            x = y;
-            y = z;
+            Console.WriteLine(obj);
         }
-        //public void Swap(ref int x, ref int y)
-        //{
-        //    int z = x;
-        //    x = y;
-        //    y = z;
-        //}
-        //public void Swap(ref double x, ref double y)
-        //{
-        //    double z = x;
-        //    x = y;
-        //    y = z;
-        //}
+
     }
 }
